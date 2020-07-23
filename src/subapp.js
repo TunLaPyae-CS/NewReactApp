@@ -1,19 +1,22 @@
 import React from "react";
 
-const SubApp = ({ ninjaprop }) => {
+const SubApp = ({ ninjaprop , deleteNinja}) => {
+  
+//*ninjaClass is being converted to HTML  
   const ninjaHtmlList = ninjaprop.map((ninja) => {
     const { name, age, belt, id } = ninja;
-    if (age > 20) {
-      return (
-        <div className="ninja" key={id}>
-          <div>Name : {name}</div>
-          <div>Age : {age}</div>
-          <div>Belt : {belt}</div>
-          <hr />
-        </div>
-      );
-    } else return null;
+    return age > 20 ? (
+      <div className="ninja" key={id}>
+        <div>Name : {name}</div>
+        <div>Age : {age}</div>
+        <div>Belt : {belt}</div>
+        <button onClick={()=>{deleteNinja(id)}}>Delete</button>
+        <hr />
+      </div>
+    ) : null;
   });
+
+  //* This is actually what gets returned
   return (
     <div className="NinjaList">
       <hr />
